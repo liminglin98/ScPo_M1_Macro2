@@ -1,0 +1,149 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+% Title and Author
+\title{TA Session 5 for Macro 2}
+\author{Liming lin}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Monetary Policy Shock}
+The model is characterized by these four equations:
+\begin{enumerate}
+    \item Euler equation:\\
+    \begin{equation}
+        c_t = \mathbb{E}_t[-\frac{1}{\gamma}(r_t-\pi_{t+1})+c_{t+1}]
+    \end{equation}
+    \item New Keynesian Phillips Curve:\\
+    \begin{equation}
+        \pi_t = \frac{(1-\lambda)(1-\lambda\beta)}{\lambda}\xi\Bigl(c_t - c_t^f\Bigr) + \beta\,E_t\Bigl(\pi_{t+1}\Bigr)
+    \end{equation}
+    \item Monetary Policy Rule:\\
+    \begin{equation}
+        r_t = \phi_\pi\,\pi_t + v_t
+    \end{equation}
+    \item Output Gap:\\
+    \begin{equation}
+        c_t - c_t^f = c_t - \left(\psi + \frac{1}{\psi+\gamma}\,a_t\right)
+    \end{equation}
+    \item Exogenous Shock:\\
+    \begin{equation}
+        v_t = \rho v_{t-1} + \varepsilon_t^v
+    \end{equation}
+\end{enumerate}
+\subsection{Method of undertermined coefficients}
+The method on undetermined coeffcient, also known as guess and verify, consists in guessing a functional form for the solution. We know from the simple monetary model that a solution of the model is to express the endogenous variables as a function of the structural shocks. Guess that the solution takes the form:\\
+\begin{align*}
+    c_t=\phi_c \times v_t 
+\end{align*}
+and
+\begin{align*}
+    \pi_t=\phi_\pi \times v_t
+\end{align*}
+Then, verify:\\
+\textbf{For the Euler equation, we have:}\\
+\[
+c_t = \mathbb{E}_t[-\frac{1}{\gamma}(r_t-\pi_{t+1})+c_{t+1}]
+\]
+Using the monetary policy rule,
+\[
+r_t = \phi_\pi\,\pi_t + v_t = \phi_\pi\,\psi_\pi\,v_t + v_t,
+\]
+and noting that
+\[
+ E_t(\pi_{t+1}) = E_t(\psi_{\pi} v_{t+1})= E_t(\psi_\pi(\rho v_t+\varepsilon_{t+1}^v))=\psi_\pi\,\rho\,v_t,
+\]
+Also,
+\[
+E_t(c_{t+1})=E_t(\psi_c v_{t+1})=E_t(\psi_c(\rho v_t+\varepsilon_{t+1}^v))=\psi_c\rho v_t
+\]
+Substitute these equations into the Euler equation, we have:\\
+\[
+\psi_c\,v_t = -\frac{1}{\gamma}\Bigl[\bigl(\phi_\pi\,\psi_\pi\,v_t + v_t\bigr) - \psi_\pi\,\rho\,v_t\Bigr] + \psi_c\,\rho\,v_t.
+\]
+Dividing by \(v_t\) (assuming \(v_t\neq0\)) gives:
+\[
+\psi_c = -\frac{1}{\gamma}\Bigl[\phi_\pi\,\psi_\pi + 1 - \rho\,\psi_\pi\Bigr] + \rho\,\psi_c.
+\]
+Collecting terms, we have:
+\[
+\psi_c\,(1-\rho) = -\frac{1}{\gamma}\Bigl[1 + \psi_\pi\,( \phi_\pi - \rho)\Bigr],
+\]
+or
+\[
+\psi_c = -\frac{1}{\gamma(1-\rho)}\Bigl[1 + \psi_\pi\,( \phi_\pi - \rho)\Bigr]. \tag{A}
+\]\\
+\textbf{For the New Keynesian Phillips Curve, we have:}\\
+\[
+\pi_t = \frac{(1-\lambda)(1-\lambda\beta)}{\lambda}\xi\Bigl(c_t - c_t^f\Bigr) + \beta\,E_t\Bigl(\pi_{t+1}\Bigr).
+\]
+With \( c_t^f=0 \), and $\kappa \equiv \frac{(1-\lambda)(1-\lambda\rho)}{\lambda}\xi$, the Phillips curve becomes:
+\[
+\pi_t = \kappa\,c_t + \beta\,E_t(\pi_{t+1}).
+\]
+Substitute \( c_t = \psi_c\,v_t \) and \( \pi_t = \psi_\pi\,v_t \) (with \( E_t(\pi_{t+1}) = \psi_\pi\,\rho\,v_t \)):
+\[
+\psi_\pi\,v_t = \kappa\,\psi_c\,v_t + \beta\,\psi_\pi\,\rho\,v_t.
+\]
+Cancel \(v_t\):
+\[
+\psi_\pi = \kappa\,\psi_c + \beta\,\psi_\pi\,\rho.
+\]
+Thus,
+\[
+\psi_\pi\,(1-\beta\rho) = \kappa\,\psi_c,\quad\text{or}\quad \psi_\pi = \frac{\kappa\,\psi_c}{1-\beta\rho}. \tag{B}
+\]\\
+\textbf{Solving for the system of equations (A) and (B):}\\
+Substitute (B) into (A):
+\[
+\psi_c = -\frac{1}{\gamma(1-\rho)}\left[1 + \frac{\kappa\,\psi_c}{1-\beta\rho}\,(\phi_\pi-\rho)\right].
+\]
+Multiply both sides by \(\gamma(1-\rho)\):
+\[
+\gamma(1-\rho)\,\psi_c = -\left[1 + \frac{\kappa\,(\phi_\pi-\rho)}{1-\beta\rho}\,\psi_c\right].
+\]
+Collecting terms in \(\psi_c\):
+\[
+\psi_c\left[\gamma(1-\rho) + \frac{\kappa\,(\phi_\pi-\rho)}{1-\beta\rho}\right] = -1.
+\]
+Thus,
+\[
+\psi_c = -\frac{1}{\gamma(1-\rho) + \dfrac{\kappa\,(\phi_\pi-\rho)}{1-\beta\rho}}.
+\]
+Writing the denominator as a single fraction,
+\[
+\gamma(1-\rho) + \frac{\kappa\,(\phi_\pi-\rho)}{1-\beta\rho} = \frac{\gamma(1-\rho)(1-\beta\rho) + \kappa\,(\phi_\pi-\rho)}{1-\beta\rho},
+\]
+so that
+\[
+\psi_c = -\frac{1-\beta\rho}{\gamma(1-\rho)(1-\beta\rho) + \kappa\,(\phi_\pi-\rho)}.
+\]
+Substituting back into (B), we obtain
+\[
+\psi_\pi = \frac{\kappa\,\psi_c}{1-\beta\rho} = -\frac{\kappa}{\gamma(1-\rho)(1-\beta\rho) + \kappa\,(\phi_\pi-\rho)}.
+\]
+\textbf{Determining the effect of a monetary policy shock:}\\
+\begin{itemize}
+    \item \(\gamma > 0\) (the coefficient of relative risk aversion),
+    \item $\rho$ is the coefficient on shock from the previous period to smooth monetary policy and \(\rho \in [0,1)\) so that \(1-\rho > 0\), 
+    \item $\beta$ is again the discounted factor for the future period, \(\beta \in (0,1)\) implying \(1-\beta\rho > 0\),
+    \item  We also have $0\leq\lambda\leq1$ which is the percentage of firms that cannot adjust prices flexibly
+    \item $\xi=\psi+\gamma$, recall that $\psi$ is the coefficient of responsiveness of labor supply to changes in real wages and $\psi \geq 0$, so $\xi > 0$,
+    \item $\kappa \equiv \frac{(1-\lambda)(1-\lambda\rho)}{\lambda}\xi$, \(\kappa > 0\) by its definition, and
+    \item $\phi_\pi$ is the coefficient on inflation in the monetary policy rule, and it is usually assumes that \(\phi_\pi > \rho\), so that \(\phi_\pi - \rho > 0\).
+\end{itemize}
+\textbf{Thus, both \(\psi_\pi\) and \(\psi_c\) coefficients are all negative. Therefore, a positive (negative) monetary policy shock will lead to a decrease (increase) in consumption $c_t$ and inflation $\pi_t$.}
+\end{document}
