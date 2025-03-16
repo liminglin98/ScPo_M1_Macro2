@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\section*{TA5 Zero Lower Bound (ZLB)}
+
+Consider the simple New Keynesian model with a Zero Lower Bound (ZLB) characterized by:
+
+\paragraph{Euler equation (with preference shock):}
+\[
+c_t = E_t\left[-\frac{1}{\gamma}(\epsilon_{t+1}^d - \epsilon_t^d + r_t - \pi_{t+1}) + c_{t+1}\right]
+\]
+
+\paragraph{New Keynesian Phillips curve:}
+\[
+\pi_t = \kappa c_t + \beta E_t[\pi_{t+1}]
+\]
+
+\paragraph{Monetary policy rule (ZLB constraint):}
+\[
+r_t = \max\{-\ln(R),\, \phi_{\pi}\pi_t\}
+\]
+According to the last equation, the monetary authority follows a Taylor rule as long as the
+implied net nominal interest rate is non-negative and the monetary authority sets the net
+nominal interest rate to zero otherwise.\\
+Guess there is an equilibrium satisfying the conditions below:\\
+(a) Consumption, inflation and the nominal interest rate are constant over time until the
+preference shock reverts permanently back to 0.\\
+(b) The economy is in the non-stochastic steady-state with zero inflation thereafter.\\
+This implies that in period $t$, the economy is hit by a negative preference shock $\epsilon_t^d
+< 0$ and that afterwards, the preference shock keeps its current value with probability $\mu$ and reverts permanently back to $0$ with probability $1-\mu$.
+
+\section*{2.1 Expectations}
+Since when the preference shock reverts to 0, consumption, inflation and the nominal interest rate are constant over time, so the deviation of them in the steady states are $0$, $c^{ss}=\pi^{ss}=r^{ss}=0$
+
+\[
+E_t(c_{t+1}) = \mu c_t + (1 - \mu)\cdot c^{ss} = \mu c_t
+\]
+
+\[
+E_t(\pi_{t+1}) = \mu \pi_t + (1 - \mu)\cdot \pi^{ss} = \mu \pi_t
+\]
+
+\[
+E_t(\epsilon_{t+1}^d) = \mu \epsilon_t^d + (1 - \mu)\cdot 0 = \mu \epsilon_t^d
+\]
+
+\paragraph{Euler equation explicitly at time \(t\):} Expanding the expectation of the Euler equation at time \(t\):
+\[
+c_t = -\frac{1}{\gamma}\left[(E_t(\epsilon_{t+1}^d) - \epsilon_t^d + r_t - E_t(\pi_{t+1}))\right] + E_t(c_{t+1})
+\]
+Then we can substitute the expectations of \(c_{t+1}\) and \(\pi_{t+1}\) into the equation:
+
+\[
+c_t = -\frac{1}{\gamma}\left[\mu \epsilon_t^d - \epsilon_t^d + r_t - \mu \pi_t\right] + \mu c_t
+\]
+Then we isolate $c_t$:
+\[
+(1-\mu)c_t=-\frac{1}{\gamma}\left[\mu \epsilon_t^d - \epsilon_t^d + r_t - \mu \pi_t\right]
+\]
+Then we move $\gamma$ to the left side and collect $\epsilon$ on the right hand side:
+
+\[
+\gamma(1 - \mu)c_t = (1 - \mu)\epsilon_t^d - r_t + \mu \pi_t
+\]
+
+\section*{2.2 Phillips Curve}
+
+Using expectations, rewrite the Phillips curve:
+\[
+\pi_t = \kappa c_t + \beta E_t[\pi_{t+1}] \quad \Rightarrow \quad \pi_t = \kappa c_t + \beta \mu \pi_t
+\]
+
+Solve explicitly for inflation:
+\[
+\pi_t = \frac{\kappa}{1 - \beta \mu} c_t
+\]
+
+Note here that $c_t^f=0$ again because the preference shock like monetary policy shock does not affect $a_t$.
+
+\section*{2.3 ZLB not binding}
+
+\subsection*{(i) Solve for \(c_t\) (when \(r_t = \phi_{\pi}\pi_t\))}
+
+When the ZLB is not binding, substitute \(r_t = \phi_{\pi}\pi_t\) into the Euler equation:
+
+\[
+\gamma(1 - \mu)c_t = (1 - \mu)\epsilon_t^d - \phi_{\pi}\pi_t + \mu \pi_t
+\]
+
+Substitute \(\pi_t = \frac{\kappa}{1-\beta\mu} c_t\):
+\[
+\gamma(1 - \mu)c_t = (1 - \mu)\epsilon_t^d + (\mu - \phi_{\pi})\frac{\kappa}{1 - \beta\mu} c_t
+\]
+
+Isolate \(c_t\):
+\[
+\left[(\gamma(1-\mu))-\frac{(\mu-\phi_\pi)\kappa}{1-\beta \mu}\right]c_t=  (1 - \mu)\epsilon_t^d
+\]
+Move the coefficient to the right side:
+\[
+c_t = \frac{(1 - \mu)\epsilon_t^d}{(\gamma(1-\mu))-\frac{(\mu-\phi_\pi)\kappa}{1-\beta \mu}}
+\]
+Divided both the numberator and denominator by $\gamma(1-\mu)$
+
+\[
+c_t=\frac{\frac{1}{\gamma}\epsilon_t^d}{1 - \frac{\frac{1}{\gamma}}{1-\mu}\frac{(\mu-\phi_\pi)\kappa}{1 - \beta\mu}}
+\]
+Which is the equation appears on the slides.
+\subsection*{(ii) Interpretation}
+Not sure about why the guess is verified.
+
+\section*{2.4 ZLB binding}
+
+\subsection*{(i) Solve for \(c_t\) (when \(r_t = -\ln(R)\))}
+
+Euler equation at ZLB \(r_t = -\ln(R)\):
+\[
+\gamma(1 - \mu)c_t = (1 - \mu)\epsilon_t^d + \ln(R) + \mu \pi_t
+\]
+
+Using the Phillips curve \(\pi_t = \frac{\kappa}{1-\beta\mu} c_t\), we get:
+\[
+\gamma(1 - \mu)c_t = (1 - \mu)\epsilon_t^d + \ln(R) + \frac{\mu\kappa}{1-\beta\mu} c_t
+\]
+
+Isolate \(c_t\):
+\[
+\left[(\gamma(1-\mu))-\frac{\mu\kappa}{1-\beta\mu}\right]c_t=  (1 - \mu)\epsilon_t^d + \ln(R)
+\]
+Move the coefficient to the right side:
+\[
+c_t = \frac{(1 - \mu)\epsilon_t^d + \ln(R)}{(\gamma(1-\mu))-\frac{\mu\kappa}{1-\beta\mu}}
+\]
+Again, divided both the numberator and denominator by $\gamma(1-\mu)$:
+\[
+c_t=\frac{\frac{1}{\gamma}\epsilon_t^d + \frac{\frac{1}{\gamma}}{1-\mu}ln(R)}{1 - \frac{\frac{1}{\gamma}}{1-\mu}\frac{\mu\kappa}{1 - \beta\mu}}
+\]
+Which is the same as the equation appears on the slides.
+\subsection*{(ii) Interpretation}
+Again, not sure about why the guess is verified.
+\end{document}
+
